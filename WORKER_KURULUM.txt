@@ -1,0 +1,88 @@
+CLOUDFLARE WORKER KURULUM TALİMATLARI
+=========================================
+
+ADIM 1: Worker Oluştur
+-----------------------
+1. https://dash.cloudflare.com adresine git
+2. Sol menüden "Workers & Pages" seç
+3. "Create application" butonuna tıkla
+4. "Create Worker" seç
+5. İsim ver (örn: "articnc-router")
+6. "Deploy" butonuna tıkla
+
+ADIM 2: Worker Kodunu Yükle
+----------------------------
+1. Yeni oluşturulan Worker'a git
+2. "Edit code" butonuna tıkla
+3. Sol taraftaki kod editöründeki tüm kodu sil
+4. "d:\AKILLI UYGULAMALAR\cloudflare-worker.js" dosyasındaki kodu kopyala
+5. Editöre yapıştır
+6. Sağ üstteki "Save and Deploy" butonuna tıkla
+
+ADIM 3: Route Ekle (Her subdomain için)
+----------------------------------------
+1. Worker sayfasında "Settings" sekmesine git
+2. "Triggers" bölümünde "Add route" butonuna tıkla
+3. Aşağıdaki route'ları TEK TEK ekle:
+
+   Route: metal.articnc.online/*
+   Zone: articnc.online
+   
+   Route: video.articnc.online/*
+   Zone: articnc.online
+   
+   Route: doviz.articnc.online/*
+   Zone: articnc.online
+   
+   Route: ceviri.articnc.online/*
+   Zone: articnc.online
+   
+   Route: haberler.articnc.online/*
+   Zone: articnc.online
+   
+   Route: imsakiye.articnc.online/*
+   Zone: articnc.online
+   
+   Route: namaz.articnc.online/*
+   Zone: articnc.online
+   
+   Route: ocr.articnc.online/*
+   Zone: articnc.online
+   
+   Route: yapay.articnc.online/*
+   Zone: articnc.online
+   
+   Route: yemek.articnc.online/*
+   Zone: articnc.online
+   
+   Route: gorsel.articnc.online/*
+   Zone: articnc.online
+   
+   Route: dosya.articnc.online/*
+   Zone: articnc.online
+   
+   Route: donusturucu.articnc.online/*
+   Zone: articnc.online
+   
+   Route: muzik.articnc.online/*
+   Zone: articnc.online
+   
+   Route: hava.articnc.online/*
+   Zone: articnc.online
+
+ADIM 4: Test Et
+---------------
+Route'lar eklendikten sonra tarayıcıda test et:
+- https://metal.articnc.online/
+- https://hava.articnc.online/
+- https://doviz.articnc.online/
+- vb.
+
+NOT: DNS kayıtları zaten "proxied=true" olarak ayarlandı.
+Worker route'ları eklendiğinde otomatik çalışacak.
+
+SORUN GİDERME:
+-------------
+- Eğer hala 403 alıyorsan, Worker'ı "Edit code" ile aç ve "Save and Deploy" yap
+- Route'ların hepsinin "articnc.online" zone'unda olduğundan emin ol
+- Worker loglarını kontrol et: Worker sayfasında "Logs" sekmesi
